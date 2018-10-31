@@ -1,0 +1,8 @@
+//.env
+
+NODE_ENV=development
+DB_HOST=localhost
+DB_USERNAME=root
+DB_PASSWORD=obey199719
+DB_NAME=graph_ql
+JWT_SECRET=somereallylongsecretkey
