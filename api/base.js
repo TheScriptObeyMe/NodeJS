@@ -4,18 +4,23 @@ require("dotenv").config();
 const mysql = require("mysql2/promise");
 
 const pool_db = mysql.createPool({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASS,
-  database: process.env.MYSQL_DB_world
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-const db_build = process.env.DB_BUILD;
 
 class query_base {
 
   async select_creature_all() {
     try {
+
+      console.log('DB name:', process.env.DB_NAME);
+
       let [rows, fields] = await pool_db.query(
         "SELECT * FROM `creature`"
       );
